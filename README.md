@@ -43,3 +43,13 @@ Use these steps to clone from SourceTree, our client for using the repository co
 4. Open the directory you just created to see your repository’s files.
 
 Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+
+
+## Get started - should solve problems (test them all)
+
+1. Add node install, npm install, npm install -g npx
+2. npm install react-scripts
+3. npm install react-dom, npm install web-vitals
+
+Always good
+4. npm update, npm install, npm -v <--(to see that it is installed)
