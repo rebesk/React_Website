@@ -1,17 +1,51 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-.App {
+body {
   display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
+  font-family: 'Italiana', serif;
+  background-color: black;
+
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  z-index: 1000;
+}
+
+
+h1 {
+  font-size: 2em;
+  font-weight: 300;
   text-align: center;
-  height: 100vh; /* Ensure the App takes up the full viewport height */
-  width: 100vw; /* Ensure the App takes up the full viewport width */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+p {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.header-logo {
+  width: 110px;
+  height: 80px;
+  margin-left: 50px;
+
 }
 
 .App-logo {
-  width: 100%;
+  width: 40%;
   height: auto;
 }
 
@@ -22,21 +56,17 @@
   margin: 1em;
 }
 
-.App-header {
-  display: flex;
-
-  font-size: calc(10px + 2vmin);
-  width: 100%; /* Ensure the header takes up the full width */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
-
 nav {
-  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Ensure the nav takes up the full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  margin-top: 10px;
 }
 
 nav a {
-  margin: 0 1em;
-  color: #333333;
+  margin-right: 2em;
+  color: black;
   text-decoration: none;
 }
 
@@ -44,11 +74,3 @@ nav a:hover {
   text-decoration: underline;
 }
 
-footer {
-  margin-top: auto;
-  font-size: 1em;
-  background-color: #eca49a;
-  width: 100%; /* Ensure the footer takes up the full width */
-  text-align: center;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}

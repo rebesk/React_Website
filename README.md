@@ -53,3 +53,6 @@ Now that you're more familiar with your Bitbucket repository, go ahead and add a
 
 Always good
 4. npm update, npm install, npm -v <--(to see that it is installed)
+5. npm install @material-ui/core --legacy-peer-deps
+
+#For all installations, ex npm install, add "--legacy-peer-deps"

@@ -2,40 +2,32 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
+import Home from './Home';
 import About from './About';
+import CV from './CV';
+import { Workouts } from './workouts';
 
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="App">
-        <header className="App-header">
-         
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        <main>
+      <header className="App-header">
+        <img src="/images/Logo1.png" alt="Logo" className="header-logo" />
+         <nav>
+           <Link to="/">Home</Link>
+           <Link to="/about">About</Link>
+           <Link to="/cv">CV</Link>
+           <Link to="/workouts">Workout Project</Link>
+         </nav>
+       </header> 
+        <body>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/cv" element={<CV />} />
+            <Route path="/workouts" element={<Workouts />} />
           </Routes>
-        </main>
-        <footer>
-          <p>2025 | Made by: Rebecca M. E.</p>
-        </footer>
-      </div>
+        </body>
     </Router>
-  );
-};
-
-const Home: React.FC = () => {
-  return (
-    <div>
-       <img src="/images/Logo1.png" alt="Logo" className="App-logo" />
-       <h1>Rebecca</h1>
-      <p>Welcome to my website!</p>
-    </div>
   );
 };
 

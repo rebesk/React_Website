@@ -1,7 +1,7 @@
 // filepath: /c:/Users/Rebec/react_website/src/index.tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './App.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
