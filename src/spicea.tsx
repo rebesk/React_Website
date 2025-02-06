@@ -9,17 +9,25 @@ interface WorkoutsProps {
 
 const useStyles = makeStyles({ 
     workouts: {
-        display: 'flex', 
-        justifyContent: 'center', 
-        flexDirection: 'row', 
+        display: 'flex',
+        flexDirection: 'column',
         width: '100vw', 
         height: '100vh', 
-        alignItems: 'center', 
-        background: 'linear-gradient(180deg, #eeeeee, #9d8a7c, #796254 , #523f31 )',
+      
     },
+    header:{
+        fontSize: '32px',
+        
+    },
+    logo: { 
+        display: 'flex',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 });
 
-export const Workouts: React.FC = () => {
+export const Spicea: React.FC = () => {
     const classes = useStyles();
     const useState = React.useState;
     const useEffect = React.useEffect;
@@ -28,7 +36,9 @@ export const Workouts: React.FC = () => {
 
   return (
     <div className={classes.workouts}>
-      <h1>Workouts</h1>
+    <div style={{ marginTop: '10%' }}></div>
+      <img src="/images/spicea.png" className={classes.logo} />
+
     </div>
   );
 };

@@ -1,12 +1,27 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-      {
-        "name": "Launch Chrome",
-        "type": "chrome",
-        "request": "launch",
-        "url": "http://localhost:3000",
-        "webRoot": "${workspaceFolder}/src"
-      }
-    ]
-  }
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/src"
+    },
+    {
+      "name": "Launch Backend",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/graphql-backend/server.js",
+      "cwd": "${workspaceFolder}/graphql-backend",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Launch Full Project",
+      "configurations": ["Launch Chrome", "Launch Backend"]
+    }
+  ]
+}

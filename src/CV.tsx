@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { Document, Page } from 'react-pdf';
-import { pdfjs } from 'react-pdf';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from 'react-bootstrap';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 const useStyles = makeStyles({
   container: {
@@ -68,12 +65,6 @@ const CV: React.FC = () => {
         <Button className={classes.button} onClick={goToPrevPage}>
         <i className="bi bi-arrow-left-circle-fill"></i></Button>
         <div className={classes.pdfViewer}>
-          <Document
-            file="/cv.pdf"
-            onLoadSuccess={onDocumentLoadSuccess}
-          >
-            <Page pageNumber={pageNumber} className={classes.pdfPage} />
-          </Document>
         </div>
         <Button className={classes.button} onClick={goToNextPage}> 
           <i className="bi bi-arrow-right-circle-fill"></i>

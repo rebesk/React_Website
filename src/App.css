@@ -1,15 +1,18 @@
 html, body {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background: (#eeeeee);
 }
 
 body {
   display: flex;
-  font-family: 'Italiana', serif;
-  background-color: black;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Verdana', sans-serif;
 
 }
 
@@ -19,34 +22,24 @@ header {
   width: 100%;
   height: 80px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   font-size: 1.5rem;
-  z-index: 1000;
 }
 
 
 h1 {
-  font-size: 2em;
+  font-size: 2rem;
   font-weight: 300;
   text-align: center;
 }
 
 p {
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 1rem;
 }
 
 .header-logo {
-  width: 110px;
-  height: 80px;
-  margin-left: 50px;
+  width: 250px;
 
-}
-
-.App-logo {
-  width: 40%;
-  height: auto;
 }
 
 .profile-pic {
@@ -58,19 +51,23 @@ p {
 
 nav {
   display: flex;
-  justify-content: center;
-  width: 100%; /* Ensure the nav takes up the full width */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  margin-top: 10px;
+  justify-content: right;
+  width: 100%;
+  box-sizing: border-box; 
+  align-items: center;
+  flex-direction: row;
 }
 
 nav a {
-  margin-right: 2em;
   color: black;
+  margin-right: 10px;
   text-decoration: none;
+  padding: 2%;
+  transition: background-color 0.3s, border-radius 0.3s; 
 }
 
 nav a:hover {
-  text-decoration: underline;
+  text-decoration: 3px underline #e6dbd8;
+
 }
 

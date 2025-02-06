@@ -5,17 +5,16 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles({
   container: {
     display: 'flex', 
+    width: 'min(90vw, 90vh)', /* Responsive size */
+    height: 'min(90vw, 90vh)', /* Ensures it's a circle */
     justifyContent: 'center', 
     flexDirection: 'column', 
-    width: '100vw',
-    height: '80vh',
     alignItems: 'center', 
-    borderRadius: '0 0 30% 30%',
+    borderRadius: '50%',
     background: 'linear-gradient(180deg, #eeeeee, #9d8a7c, #796254 , #523f31 )',
   },
   appLogo: {
-    width: 'auto',
-    height: 'auto',
+    width: '80%',
   },
   Button: {
     marginTop: '100px',
@@ -48,14 +47,15 @@ const Home: React.FC = () => {
     setIsContentVisible(!isContentVisible);
   };
     return (
-      <div className={classes.container}>
-         <img src="/images/Logo1.png" className={classes.appLogo} />
+      <div>
+        <div className={classes.container}>
          <h1>Welcome!</h1>
         <p>This website is still under development...</p>
         <Button variant="contained" className={classes.Button} onClick={toggleContentVisibility}>
         <i className="bi bi-caret-down"></i></Button>  
         <div className={`${classes.content} ${isContentVisible ? classes.contentVisible : ''}`}>
         <p>Your roll-down content goes here.</p>
+        </div>
       </div>
     </div>
     );

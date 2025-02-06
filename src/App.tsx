@@ -5,26 +5,26 @@ import './App.css';
 import Home from './Home';
 import About from './About';
 import CV from './CV';
-import { Workouts } from './workouts';
+import { Spicea } from './spicea';
 
 const App: React.FC = () => {
   return (
     <Router>
       <header className="App-header">
-        <img src="/images/Logo1.png" alt="Logo" className="header-logo" />
+        <img src="/images/spicea.png" alt="Logo" className="header-logo" />
          <nav>
            <Link to="/">Home</Link>
+             {/* <Link to="/cv">CV</Link> */}
+           <Link to="/spicea">Spicea project</Link>
            <Link to="/about">About</Link>
-           <Link to="/cv">CV</Link>
-           <Link to="/workouts">Workout Project</Link>
          </nav>
        </header> 
         <body>
           <Routes>
             <Route path="/" element={<Home />} />
+            {/*<Route path="/cv" element={<CV />} /> */}
+            <Route path="/spicea" element={<Spicea />} />
             <Route path="/about" element={<About />} />
-            <Route path="/cv" element={<CV />} />
-            <Route path="/workouts" element={<Workouts />} />
           </Routes>
         </body>
     </Router>
