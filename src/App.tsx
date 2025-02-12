@@ -1,32 +1,41 @@
-// filepath: /c:/Users/Rebec/react_website/src/App.tsx
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import './App.css';
-import Home from './Home';
-import About from './About';
-import CV from './CV';
-import { Spicea } from './spicea';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import "./App.css";
+import Home from "./Home";
+import About from "./About";
+import AddRecipe from "./RecipePage/AddRecipe";
+import { Spicea } from "./spicea";
 
 const App: React.FC = () => {
   return (
     <Router>
-      <header className="App-header">
-        <img src="/images/spicea.png" alt="Logo" className="header-logo" />
-         <nav>
-           <Link to="/">Home</Link>
-             {/* <Link to="/cv">CV</Link> */}
-           <Link to="/spicea">Spicea project</Link>
-           <Link to="/about">About</Link>
-         </nav>
-       </header> 
-        <body>
+      {/* Fixed Header */}
+      <header className="header">
+        <img src="/images/greens_spicea.png" className="header-logo" alt="Logo" />
+      </header>
+
+      {/* Sidebar + Content Layout */}
+      <div className="container">
+      <img src="/images/greens_logo.png" className="green-logo"/>
+        {/* Fixed Sidebar */}
+        <nav className="sidebar">
+        
+          <Link to="/">Home</Link>
+          <Link to="/spicea">Spicea project</Link>
+          <Link to="/add-recipe">Add Recipe</Link>
+          <Link to="/about">About</Link>
+        </nav>
+
+        {/* Main Content */}
+        <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            {/*<Route path="/cv" element={<CV />} /> */}
             <Route path="/spicea" element={<Spicea />} />
             <Route path="/about" element={<About />} />
+            <Route path="/add-recipe" element={<AddRecipe />} />
           </Routes>
-        </body>
+        </main>
+      </div>
     </Router>
   );
 };

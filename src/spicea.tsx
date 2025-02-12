@@ -1,44 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './App.css';
 import { makeStyles } from '@material-ui/core';
+import Recipe from './RecipePage/recipe';
+import { Sidebar } from './sidebar';
 
-interface WorkoutsProps {
-    name: string;
-    }
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    maxheight: 'calc(100% - 80px)', // Ensures full viewport height
+    maxwidth: 'calc(100% - 250px)',  // Ensures full viewport width
+  },
 
-const useStyles = makeStyles({ 
-    workouts: {
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100vw', 
-        height: '100vh', 
-      
-    },
-    header:{
-        fontSize: '32px',
-        
-    },
-    logo: { 
-        display: 'flex',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
 });
 
 export const Spicea: React.FC = () => {
-    const classes = useStyles();
-    const useState = React.useState;
-    const useEffect = React.useEffect;
-    const [workouts, setWorkouts] = useState<WorkoutsProps[]>([]);
-
+  const classes = useStyles();
 
   return (
-    <div className={classes.workouts}>
-    <div style={{ marginTop: '10%' }}></div>
-      <img src="/images/spicea.png" className={classes.logo} />
-
+    <div className={classes.root}>
+      <div >
+        <Recipe />
+      </div>
     </div>
   );
 };

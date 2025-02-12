@@ -56,3 +56,12 @@ Always good
 5. npm install @material-ui/core --legacy-peer-deps
 
 #For all installations, ex npm install, add "--legacy-peer-deps"
+
+
+If there is problem with updating the code in the backend:
+1. try npm cache clean --force and see if it works
+2. if not- remove the whole folder of the node_modules in backend
+3. then in bash: rm -rf node_modules package-lock.json
+4. npm install --legacy-peer-deps
+5. npx prisma generate
+6. restart the backend 

@@ -27,6 +27,8 @@ const typeDefs = gql`
   type Mutation {
     addRecipe(title: String!, ingredients: [String!]!, instructions: String!): Recipe
     addGrocery(recipeId: ID!, name: String!, quantity: String!): Grocery
+    deleteRecipe(id: ID!): Recipe
+    deleteGrocery(id: ID!): Grocery
   }
 `;
 
@@ -52,6 +54,24 @@ const resolvers = {
           recipe: { connect: { id: args.recipeId } },
         },
       });
+    },
+    deleteRecipe: async (_, args) => {
+      const recipe = await prisma.recipe.findUnique({ where: { id: args.id } });
+
+      if (!recipe) {
+        throw new Error(`Recipe with ID ${args.id} not found`);
+      }
+
+      return await prisma.recipe.delete({ where: { id: args.id } });
+    },
+    deleteGrocery: async (_, args) => {
+      const grocery = await prisma.grocery.findUnique({ where: { id: args.id } });
+
+      if (!grocery) {
+        throw new Error(`Grocery with ID ${args.id} not found`);
+      }
+
+      return await prisma.grocery.delete({ where: { id: args.id } });
     },
   },
 };
