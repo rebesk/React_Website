@@ -65,3 +65,10 @@ If there is problem with updating the code in the backend:
 4. npm install --legacy-peer-deps
 5. npx prisma generate
 6. restart the backend 
+
+## For starting and working on code
+1. create and connect ssh-key
+2. see that postgrsql is downloaded on computer
+3. connect to neon database
+4. clone repo through commandprompt 
+5. go throug the npm installations and the rundown above of the backend installationss

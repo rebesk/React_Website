@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-
 import { makeStyles } from '@material-ui/core';
 import RecipeList from './recipeList';
-import AddRecipe from './AddRecipe';
 
 
 const useStyles = makeStyles({
@@ -11,7 +9,7 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center',
-        maxheight: 'calc(100% - 80px)', // Ensures full viewport height
+        maxheight: 'calc(100% - 80px)', 
         maxwidth: 'calc(100% - 250px)', 
     },
     container: {

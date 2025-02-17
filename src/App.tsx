@@ -16,7 +16,7 @@ const App: React.FC = () => {
 
       {/* Sidebar + Content Layout */}
       <div className="container">
-      <img src="/images/greens_logo.png" className="green-logo"/>
+      <img src="/images/spicealogo.png" className="green-logo"/>
         {/* Fixed Sidebar */}
         <nav className="sidebar">
         

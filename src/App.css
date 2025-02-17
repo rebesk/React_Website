@@ -2,21 +2,31 @@
 html, body {
   width: 100%;
   height: 100%;
-  margin: 0;
+  margin: 0; 
   padding: 0;
-  overflow-x: hidden;
-  font-family: 'Verdana', sans-serif;
-  background: #daded8;
+  overflow-x: hidden; /* no scroll on the x-axis of the page */
+  font-family: 'Helvetica', sans-serif; /* standard font */
+  background: #daded8; /* standard background for all pages */ 
+}
+
+.main-content {
+  display: flex;
+  justify-Content: center;
+  flex-direction: column;
+  align-items: center;
+  max-height: calc(100% - 80px); /* Ensures full viewport height */
+  max-width: calc(100% - 250px);  /* Ensures full viewport width */
 }
 
 /* Main layout container */
 .container {
   display: flex;
-  flex-direction: row; /* Sidebar and content side by side */
-  height: 100vh; /* Full viewport height */
-}
+  flex-direction: row; 
+  height: 100vh; 
+} 
 
-.green-logo {
+/* the small logo in the sidebar */
+.green-logo { 
   width: 80px;
   height: 80px;
   margin-left: 80px;
@@ -25,6 +35,7 @@ html, body {
   position: fixed;
 }
 
+ /* adjustments for the header-space right of the sidebar */
 .header {
   position: fixed;
   top: 0;
@@ -59,6 +70,7 @@ html, body {
   flex-direction: column;
 }
 
+/* individual items inside the sidebar */
 .sidebar a {
   margin-top: 20px;
   color: #daded8;
@@ -67,6 +79,7 @@ html, body {
   display: block;
 }
 
+/* whne hovering above an item */
 .sidebar a:hover {
   background-color: #3a4a2b;
   border-radius: 5px;

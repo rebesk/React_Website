@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import './App.css';
 import { makeStyles } from '@material-ui/core';
+import App from './App';
 
 const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxheight: 'calc(100% - 80px)', // Ensures full viewport height
-    maxwidth: 'calc(100% - 250px)',  // Ensures full viewport width
-  },
+
+  
   container: {
     display: 'flex',
     marginTop: '80px',
-    width: 'min(50vw, 80vh)', // Ensures it never gets too big
-    height: 'min(50vw, 80vh)', // Keeps it circular
+    width: 'min(50vw, 80vh)',
+    height: 'min(50vw, 80vh)', 
     justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
@@ -52,7 +49,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div>
       <div className={classes.container}>
         <h1>Welcome!</h1>
         <p>This website is still under development...</p>
@@ -60,7 +57,7 @@ const Home: React.FC = () => {
           <i className="bi bi-caret-down"></i>
         </Button>
         <div className={`${classes.content} ${isContentVisible ? classes.contentVisible : ''}`}>
-          <p>Your roll-down content goes here.</p>
+          <p>Sneaky little text</p>
         </div>
       </div>
     </div>

@@ -5,19 +5,11 @@ import { makeStyles } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxheight: 'calc(100% - 100px)', // Ensures full viewport height
-    maxwidth: 'calc(100% - 250px)', // Full width
-    position: 'relative', // Needed for absolute positioning of the picture
-  },
   card: {
     display: 'flex',
-    flexDirection: 'column',
-    width: 'min(80vw, 60vh)', // Keeps it responsive
-    height: 'min(60vw, 30vh)',
+    flexDirection: 'row',
+    width: '50%', 
+    minHeight: '300px',
     alignItems: 'center',
     borderRadius: '20px',
     textAlign: 'center',
@@ -26,15 +18,22 @@ const useStyles = makeStyles({
     padding: '40px',
     position: 'relative', // Ensures text stays on top
   },
+  textWindow: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    flexDirection: 'column',
+    width: '100%',
+  },
   picture: {
-    width: 'min(30vw, 30vh)', 
-    height: 'min(30vw, 30vh)',
+    display: 'flex',
+    left: -100,
+    width: '50%', 
     borderRadius: '50%',
-    position: 'absolute',
-    top: '50%', // Align vertically to the center
-    left: '0',
-    transform: 'translateY(-50%)', // Keeps it vertically centered
-    zIndex: 2, // Ensures it overlaps on top
+    position: 'relative',
+    top: 'translateY(-50%)', // Keeps it vertically centered
+    zIndex: 1000, // Ensures it overlaps on top
   },
 });
 
@@ -50,11 +49,12 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <div className={classes.root}>
-      <img src="/images/grass.png" className={classes.picture} />
+    <div>
       <div className={classes.card}>
+      <img src="/images/grass.png" className={classes.picture} />
+
+        <div className={classes.textWindow}>
         <h1 className="fw-bold fs-2">About</h1>
-        <div>
           <pre>{content}</pre>
         </div>
       </div>

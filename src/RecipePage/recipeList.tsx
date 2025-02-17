@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { makeStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
 
+// GET_RECIPES: Gets the same data from database as AddRecipe, make module for all?
 const GET_RECIPES = gql`
   query GetRecipes {
     recipes {
@@ -18,6 +19,7 @@ const GET_RECIPES = gql`
   }
 `;
 
+//DELETE_RECIPE: Get the data of recipe and method for deleting them from the list in db
 const DELETE_RECIPE = gql`
   mutation DeleteRecipe($id: ID!) {
     deleteRecipe(id: $id) {
@@ -26,8 +28,9 @@ const DELETE_RECIPE = gql`
   }
 `;
 
+// useStyles: change styling
 const useStyles = makeStyles({
-  container: {
+  root: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -73,11 +76,9 @@ const RecipeList: React.FC = () => {
   const classes = useStyles();
   const { loading, error, data } = useQuery(GET_RECIPES);
   const [deleteRecipe] = useMutation(DELETE_RECIPE);
-  const [title, setTitle] = useState('');
-  const [ingredients, setIngredients] = useState('');
-  const [instructions, setInstructions] = useState('');
 
-  const handleDeleteRecipe = async (id: string) => {
+
+  const handleDeleteRecipe = async (id: string) => { // function for deleting recipe from db and showing list
     try {
       console.log(`Deleting recipe with id: ${id}`);
       await deleteRecipe({
@@ -90,11 +91,11 @@ const RecipeList: React.FC = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading) return <p>Loading...</p>; // loading function, awaiting collecting data
+  if (error) return <p>Error: {error.message}</p>; //Error if not possible of getting data instead of crashing
 
   return (
-    <div className={classes.container}>
+    <div className={classes.root}>
       {data.recipes.map((recipe: any) => (
         <div key={recipe.id} className={classes.card}>
           <p className={classes.title}>{recipe.title}</p>

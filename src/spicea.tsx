@@ -10,8 +10,8 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    maxheight: 'calc(100% - 80px)', // Ensures full viewport height
-    maxwidth: 'calc(100% - 250px)',  // Ensures full viewport width
+    maxheight: 'calc(100% - 80px)',
+    maxwidth: 'calc(100% - 250px)',  
   },
 
 });
