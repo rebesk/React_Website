@@ -1,5 +1,23 @@
 ## READ-ME
-## Get started - should solve problems (test them all)
+
+Hello! My name is Rebecca Eskekärr and am the developer for this project!
+
+This is at the moment a small at-home-project but also a part of my portfolio.
+
+To explain further, this project is at the very start of the devolopment-timeline
+where I try to navigate how to work around backend-frontend aswell as connection to 
+the various databases and the integration in between while also keeping functionality
+and a sense of user-friendly design in the frontend.
+
+If you have any further questions or want to contact me, 
+my email is: rebecca@eskekarr.se
+
+Hope you have a good day! :)
+
+
+
+
+## For development - should solve problems (test them all)
 
 1. Add node install, npm install, npm install -g npx
 2. npm install react-scripts
