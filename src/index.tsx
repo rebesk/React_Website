@@ -1,11 +1,19 @@
-// filepath: /c:/Users/Rebec/react_website/src/index.tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './App.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ApolloProvider } from "@apollo/client";
-import client from "./apolloClient";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { createUploadLink } from 'apollo-upload-client';
+
+const uploadLink = createUploadLink({
+  uri: 'http://localhost:4000/graphql', 
+});
+
+const client = new ApolloClient({
+  link: uploadLink,
+  cache: new InMemoryCache(),
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
@@ -13,3 +21,5 @@ root.render(
     <App />
   </ApolloProvider>
 );
+
+reportWebVitals();

@@ -1,4 +1,3 @@
-// filepath: /c:/Users/Rebec/react_website/src/About.tsx
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { makeStyles } from '@material-ui/core';
@@ -16,24 +15,28 @@ const useStyles = makeStyles({
     zIndex: 1,
     background: 'linear-gradient(180deg, #959581, #768064, #4c593e , #2c3424)',
     padding: '40px',
-    position: 'relative', // Ensures text stays on top
+    margin: 'auto',
+    marginTop: '20px',
+    position: 'relative',
   },
   textWindow: {
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
     flexDirection: 'column',
-    width: '100%',
+    textAlign: 'left',
+    left: -200,
+    position: 'relative',
+    zIndex: 1000,
+    width: '50%', // Ensure the textWindow takes up the remaining space
   },
   picture: {
     display: 'flex',
-    left: -100,
+    left: -200,
     width: '50%', 
     borderRadius: '50%',
     position: 'relative',
-    top: 'translateY(-50%)', // Keeps it vertically centered
-    zIndex: 1000, // Ensures it overlaps on top
+    top: 'translateY(-50%)', 
+    zIndex: 1000,
+    marginRight: '20px', // Add margin to separate the picture from the text
   },
 });
 
@@ -51,7 +54,7 @@ const About: React.FC = () => {
   return (
     <div>
       <div className={classes.card}>
-      <img src="/images/grass.png" className={classes.picture} />
+      <img src="/images/tallrik.png" className={classes.picture} />
 
         <div className={classes.textWindow}>
         <h1 className="fw-bold fs-2">About</h1>

@@ -14,14 +14,13 @@ html, body {
   justify-Content: center;
   flex-direction: column;
   align-items: center;
-  max-height: calc(100% - 80px); /* Ensures full viewport height */
-  max-width: calc(100% - 250px);  /* Ensures full viewport width */
+  margin-left: 250px;
 }
 
 /* Main layout container */
 .container {
   display: flex;
-  flex-direction: row; 
+  flex-direction: column; 
   height: 100vh; 
 } 
 
@@ -30,14 +29,14 @@ html, body {
   width: 80px;
   height: 80px;
   margin-left: 80px;
-  margin-top: 10px;
-  z-index: 1;
   position: fixed;
+  z-index: 1;
+  top: 10px;
 }
 
  /* adjustments for the header-space right of the sidebar */
 .header {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 250px; 
   width: calc(100% - 250px); 
@@ -79,16 +78,35 @@ html, body {
   display: block;
 }
 
-/* whne hovering above an item */
+/* when hovering above an item */
 .sidebar a:hover {
   background-color: #3a4a2b;
   border-radius: 5px;
 }
 
-/* Main Content */
-.main-content {
-  flex-grow: 1;
-  margin-left: 250px; /* Prevents overlap with sidebar */
-  margin-top: 80px; /* Prevents overlap with header */
-  padding: 20px;
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    left: 0;
+    background-color: #4c593e;
+    padding-top: 80px; 
+  }
+
+  .main-content {
+    margin-left: 0; /* Remove left margin for smaller screens */
+  }
+
+  .header {
+    left: 0;
+    width: 100%;
+    background-color: #4c593e;
+  }
+  .green-logo {
+    position: relative;
+
+    margin-left: 10px;
+  }
+
 }

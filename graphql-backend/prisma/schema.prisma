@@ -8,17 +8,35 @@ datasource db {
 }
 
 model Recipe {
-  id        String  @id @default(uuid())
-  title     String
-  ingredients String[]
+  id           String       @id @default(uuid())
+  title        String
+  pictureUrl   String?
   instructions String
-  groceries  Grocery[]
+  ingredients  Ingredient[] 
 }
 
-model Grocery {
-  id       String  @id @default(uuid())
-  name     String
-  quantity String
-  recipeId String
-  recipe   Recipe @relation(fields: [recipeId], references: [id])
+model Ingredient {
+  id             String       @id @default(uuid())
+  name           String
+  measurementId  String?
+  recipeId       String?
+  
+  measurement    Measurement?  @relation(fields: [measurementId], references: [id])
+  recipe         Recipe?       @relation(fields: [recipeId], references: [id])
+}
+
+model Measurement {
+  id              String       @id @default(uuid())
+  measurementType MeasurementType  
+  amount          Float
+  ingredients     Ingredient[]  
+}
+
+enum MeasurementType {
+  GRAMS
+  LITERS
+  DECILITERS
+  TABLESPOONS
+  TEASPOONS
+  PIECES
 }

@@ -3,23 +3,25 @@ import { useQuery, useMutation } from '@apollo/client';
 import { makeStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
 
-// GET_RECIPES: Gets the same data from database as AddRecipe, make module for all?
+// GraphQL Queries
 const GET_RECIPES = gql`
   query GetRecipes {
     recipes {
       id
       title
-      ingredients
+      pictureUrl
       instructions
-      groceries {
+      ingredients {
         name
-        quantity
+        measurement {
+          measurementType
+          amount
+        }
       }
     }
   }
 `;
 
-//DELETE_RECIPE: Get the data of recipe and method for deleting them from the list in db
 const DELETE_RECIPE = gql`
   mutation DeleteRecipe($id: ID!) {
     deleteRecipe(id: $id) {
@@ -28,91 +30,107 @@ const DELETE_RECIPE = gql`
   }
 `;
 
-// useStyles: change styling
+// Styling
 const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxHeight: 'calc(100% - 80px)', // Ensures full viewport height
-    maxWidth: 'calc(100% - 250px)', 
+  gridContainer: {
+    display: 'grid',
+    gap: '20px',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', 
+    '@media (min-width: 900px)': {
+      gridTemplateColumns: 'repeat(3, 1fr)',
+    },
   },
-  card: { 
+  card: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '20px',
     background: 'linear-gradient(180deg, #959581, #768064, #4c593e , #2c3424)',
-    padding: '40px',
-    marginBottom: '20px', // Add margin between cards
-    position: 'relative', // Ensures text stays on top
-    listStyleType: 'none', // Remove bullet points from the main list
+    padding: '20px',
+    textAlign: 'center',
+    cursor: 'pointer',
+    transition: 'transform 0.2s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.05)',
+    },
   },
   picture: {
-    display: 'flex',
-    borderRadius: '20%',
-    minWidth: '30%',
-    maxWidth: '80%',
+    width: '100%',
+    maxHeight: '300px',
+    objectFit: 'cover',
+    borderRadius: '20px',
   },
   title: {
-    top: 0,
     fontWeight: 'bold',
-    fontSize: '30px',
-    textAlign: 'center',
+    fontSize: '20px',
+    marginTop: '10px',
+    color: ' #daded8',
   },
-  listItem: {
-    listStyleType: 'disc', // Use default bullet points for ingredients list items
+  fullRecipe: {
+    marginTop: '10px',
+    padding: '15px',
+    background: 'transparent',
+    color: '#fff',
     textAlign: 'left',
+    width: '100%',
   },
-  ingredientsList: {
-    listStyleType: 'disc', // Use default bullet points for ingredients list
-    paddingLeft: '20px', // Add some padding to indent the list
+  deleteButton: {
+    marginTop: '10px',
+    padding: '8px 12px',
+    backgroundColor: 'red',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: 'darkred',
+    },
   },
 });
 
 const RecipeList: React.FC = () => {
   const classes = useStyles();
   const { loading, error, data } = useQuery(GET_RECIPES);
-  const [deleteRecipe] = useMutation(DELETE_RECIPE);
+  const [deleteRecipe] = useMutation(DELETE_RECIPE, {
+    refetchQueries: [{ query: GET_RECIPES }],
+  });
+  const [selectedRecipe, setSelectedRecipe] = useState<string | null>(null);
 
-
-  const handleDeleteRecipe = async (id: string) => { // function for deleting recipe from db and showing list
+  const handleDeleteRecipe = async (id: string) => {
     try {
-      console.log(`Deleting recipe with id: ${id}`);
       await deleteRecipe({
         variables: { id },
-        refetchQueries: [{ query: GET_RECIPES }],
       });
-      console.log(`Recipe with id: ${id} deleted successfully`);
+      console.log('Recipe deleted successfully'); // Add logging
     } catch (err) {
       console.error('Error deleting recipe:', err);
     }
   };
 
-  if (loading) return <p>Loading...</p>; // loading function, awaiting collecting data
-  if (error) return <p>Error: {error.message}</p>; //Error if not possible of getting data instead of crashing
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className={classes.root}>
+    <div className={classes.gridContainer}>
       {data.recipes.map((recipe: any) => (
-        <div key={recipe.id} className={classes.card}>
+        <div key={recipe.id} className={classes.card} onClick={() => setSelectedRecipe(selectedRecipe === recipe.id ? null : recipe.id)}>
+          <img src={recipe.pictureUrl || "/images/tallrik.png"} className={classes.picture} alt={recipe.title} />
           <p className={classes.title}>{recipe.title}</p>
-          <img src="/images/grass.png" className={classes.picture} />
-          <p>Ingredients:</p>
-          <ul className={classes.ingredientsList}>
-            {recipe.ingredients.map((ingredient: string, index: number) => (
-              <li key={index} className={classes.listItem}>{ingredient}</li>
-            ))}
-          </ul>
-          <p>Instructions: {recipe.instructions}</p>
-          <ul>
-            {recipe.groceries.map((grocery: any) => (
-              <li key={grocery.name} className={classes.listItem}>{grocery.name} - {grocery.quantity}</li>
-            ))}
-          </ul>
-          <button onClick={() => { console.log(`Clicked delete for recipe ID: ${recipe.id}`); handleDeleteRecipe(recipe.id)}}>Delete Recipe</button>
+
+          {selectedRecipe === recipe.id && (
+            <div className={classes.fullRecipe}>
+              <p><strong>Ingredients:</strong></p>
+              <ul>
+                {recipe.ingredients.map((ingredient: any, index: number) => (
+                  <li key={index}>
+                    {ingredient.name} - {ingredient.measurement.amount} {ingredient.measurement.measurementType}
+                  </li>
+                ))}
+              </ul>
+              <p><strong>Instructions:</strong> {recipe.instructions}</p>
+              <button className={classes.deleteButton} onClick={(e) => { e.stopPropagation(); handleDeleteRecipe(recipe.id); }}>Delete Recipe</button>
+            </div>
+          )}
         </div>
       ))}
     </div>
